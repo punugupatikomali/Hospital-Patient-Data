@@ -10,5 +10,16 @@ import com.example.hospitalDemo.DataRepo;
 
 @Service
 public class DataService {
+    @Autowired
+	private DataRepo repo;
+
+    public Data adduser(Map<String,String> credentials) {
+		
+		Data temp = new Data();
+		temp.setUsername(credentials.getOrDefault("username", null));
+		temp.setPassword(credentials.getOrDefault("password", null));
+		return this.repo.save(temp);
+		
+	}
 
 }
