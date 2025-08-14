@@ -41,15 +41,24 @@ public class DoctorController {
 	    }
 	}
 
+	// @GetMapping("prods/{productsid}")
+	// public ResponseEntity<List<Products>> getAll(@PathVariable("productsid") String productsid) {
+	//     List<Products> products = this.ProductsRepo.getProdDetails(productsid);
+	//     if (!products.isEmpty()) {
+	//         return ResponseEntity.ok(products); // 200 OK
+	//     } else {
+	//         return ResponseEntity.notFound().build(); // 404 Not Found
+	//     }
+	// }
     @GetMapping("all/{specialization}")
-	// public ResponseEntity<List<Doctor>> getAll(@PathVariable("specialization") String specialization){
-        Doctor temp= this.DoctorRepo.findBySpecialization(specialization);
-	    if (!temp.isEmpty()) {
-	        return ResponseEntity.ok(temp); // 200 OK
+	public ResponseEntity<List<Doctor>> getAll(@PathVariable("specialization") String specialization){
+		List<Doctor> users = this.DoctorRepo.findBySpecialization(specialization);
+	    if (!users.isEmpty()) {
+	        return ResponseEntity.ok(users); // 200 OK
 	    } else {
 	        return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content
 	    }
-	
+	}
 
 	@PostMapping("add")
 	public ResponseEntity<Doctor> postUser(@RequestBody Map<String,String> credentials) {
