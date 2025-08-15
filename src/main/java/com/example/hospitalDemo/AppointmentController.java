@@ -41,6 +41,16 @@ public class AppointmentController {
 	    }
 	}
 
+	@GetMapping("all/{doctorname}")
+	public ResponseEntity<List<Appointment>> getAll(@PathVariable("doctorname") String doctorname){
+		List<Appointment> users = this.AppointmentRepo.findByDoctorname(doctorname);
+	    if (!users.isEmpty()) {
+	        return ResponseEntity.ok(users); // 200 OK
+	    } else {
+	        return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content
+	    }
+	}
+
 	// @GetMapping("prods/{productsid}")
 	// public ResponseEntity<List<Products>> getAll(@PathVariable("productsid") String productsid) {
 	//     List<Products> products = this.ProductsRepo.getProdDetails(productsid);
@@ -50,15 +60,15 @@ public class AppointmentController {
 	//         return ResponseEntity.notFound().build(); // 404 Not Found
 	//     }
 	// }
-    @GetMapping("all/{patient_name}")
-	public ResponseEntity<List<Appointment>> getAll(@PathVariable("patient_name") String patient_name){
-		List<Appointment> users = this.AppointmentRepo.findByPatientName(patient_name);
-	    if (!users.isEmpty()) {
-	        return ResponseEntity.ok(users); // 200 OK
-	    } else {
-	        return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content
-	    }
-	}
+    // @GetMapping("all/{patient_name}")
+	// public ResponseEntity<List<Appointment>> getAll(@PathVariable("patient_name") String patient_name){
+	// 	List<Appointment> users = this.AppointmentRepo.findByPatientName(patient_name);
+	//     if (!users.isEmpty()) {
+	//         return ResponseEntity.ok(users); // 200 OK
+	//     } else {
+	//         return ResponseEntity.status(HttpStatus.NO_CONTENT).build(); // 204 No Content
+	//     }
+	// }
 
 	@PostMapping("add")
 	public ResponseEntity<Appointment> postUser(@RequestBody Map<String,String> credentials) {
