@@ -20,15 +20,19 @@ public class Data {
 	
 	@Column(name="password")
 	private String password;
+
+	@Column(name="email	")
+	private String email;
 	
 	public Data() {
 		super();
 	}
 
-	public Data(String username, String password) {
+	public Data(String username, String password, String email) {
 		super();
 		this.username = username;
 		this.password = password;
+		this.email = email;
 	}
 
 	public int getSno() {
@@ -54,6 +58,14 @@ public class Data {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 }

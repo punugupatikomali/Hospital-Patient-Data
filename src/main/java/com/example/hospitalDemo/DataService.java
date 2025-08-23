@@ -18,6 +18,7 @@ public class DataService {
 		Data temp = new Data();
 		temp.setUsername(credentials.getOrDefault("username", null));
 		temp.setPassword(credentials.getOrDefault("password", null));
+		temp.setEmail(credentials.getOrDefault("email", null));
 		return this.repo.save(temp);
 		
 	}
